@@ -8,6 +8,8 @@ class UserProfile extends ChangeNotifier {
   String _password = 'apanya';
   int _pin = 123456;
   File? _avatarImage;
+  double _portofolio = 0;
+
 
   String? get name => _name;
   String? get email => _email;
@@ -15,6 +17,7 @@ class UserProfile extends ChangeNotifier {
   String? get password => _password;
   int? get pin => _pin;
   File? get avatarImage => _avatarImage;
+  double? get portofolio => _portofolio;
 
   set name(val){
     _name = val;
@@ -48,5 +51,13 @@ class UserProfile extends ChangeNotifier {
     if (avatarImage != null) {
       print('Avatar Path: ${avatarImage!.path}');
     }
+  }
+  bool increaseBalance(double amount) {
+    if (amount > 0) {
+      _portofolio += amount;
+      notifyListeners();
+      return true;
+    }
+    return false;
   }
 }

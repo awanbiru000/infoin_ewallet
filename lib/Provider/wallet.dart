@@ -15,12 +15,11 @@ class WalletProvider extends ChangeNotifier {
   }
 
   bool increaseBalance(double amount) {
-  if (amount > 0) {
-    _balance += amount;
-    notifyListeners();
-    return true;
+    if (amount > 0) {
+      _balance += amount;
+      notifyListeners();
+      return true;
+    }
+    return false;
   }
-  return false;
 }
-}
-
