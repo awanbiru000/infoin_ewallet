@@ -6,11 +6,11 @@ class CustomButton extends StatelessWidget {
   final bool isEnabled;
 
   const CustomButton({
-    Key? key,
+    super.key,
     required this.onPressed,
     required this.text,
-    this.isEnabled = true,
-  }) : super(key: key);
+    this.isEnabled = true, Color? backgroundColor,
+  });
 
   @override
   Widget build(BuildContext context) {

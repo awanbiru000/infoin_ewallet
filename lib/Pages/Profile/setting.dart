@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:infoin_ewallet/Pages/Profile/changePassword.dart';
-import 'package:infoin_ewallet/Pages/Profile/changePin.dart';
-import 'package:infoin_ewallet/Provider/darkMode.dart';
+import 'package:infoin_ewallet/Pages/Profile/change_password.dart';
+import 'package:infoin_ewallet/Pages/Profile/change_pin.dart';
+import 'package:infoin_ewallet/Provider/dark_mode.dart';
 import 'package:provider/provider.dart';
 
 class Setting extends StatefulWidget {
-  const Setting({Key? key}) : super(key: key);
+  const Setting({super.key});
 
   @override
   _SettingState createState() => _SettingState();
@@ -18,8 +18,8 @@ class _SettingState extends State<Setting> {
       barrierDismissible: false,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Konfirmasi Logout'),
-          content: SingleChildScrollView(
+          title: const Text('Konfirmasi Logout'),
+          content: const SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
                 Text('Apakah Anda yakin ingin logout?'),
@@ -28,13 +28,13 @@ class _SettingState extends State<Setting> {
           ),
           actions: <Widget>[
             TextButton(
-              child: Text('No'),
+              child: const Text('No'),
               onPressed: () {
                 Navigator.of(context).pop();
               },
             ),
             TextButton(
-              child: Text('Yes'),
+              child: const Text('Yes'),
               onPressed: () {
                 Navigator.of(context).pushReplacementNamed('/login');
               },
@@ -55,7 +55,7 @@ class _SettingState extends State<Setting> {
       body: ListView(
         children: <Widget>[
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
@@ -63,21 +63,21 @@ class _SettingState extends State<Setting> {
                   color: Colors.grey.withOpacity(0.1),
                   spreadRadius: 1,
                   blurRadius: 1,
-                  offset: Offset(0, 5),
+                  offset: const Offset(0, 5),
                 ),
               ],
             ),
             child: ListTile(
-              title: Text('Ganti PIN'),
-              leading: Icon(Icons.lock),
-              trailing: Icon(Icons.keyboard_arrow_right),
+              title: const Text('Ganti PIN'),
+              leading: const Icon(Icons.lock),
+              trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePin()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ChangePin()));
               },
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
@@ -85,21 +85,21 @@ class _SettingState extends State<Setting> {
                   color: Colors.grey.withOpacity(0.1),
                   spreadRadius: 1,
                   blurRadius: 1,
-                  offset: Offset(0, 5),
+                  offset: const Offset(0, 5),
                 ),
               ],
             ),
             child: ListTile(
-              title: Text('Ganti Password'),
-              leading: Icon(Icons.vpn_key),
-              trailing: Icon(Icons.keyboard_arrow_right),
+              title: const Text('Ganti Password'),
+              leading: const Icon(Icons.vpn_key),
+              trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ChangePassword()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ChangePassword()));
               },
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
@@ -107,21 +107,21 @@ class _SettingState extends State<Setting> {
                   color: Colors.grey.withOpacity(0.1),
                   spreadRadius: 1,
                   blurRadius: 1,
-                  offset: Offset(0, 5),
+                  offset: const Offset(0, 5),
                 )
               ]
             ),
             child: SwitchListTile(
-              title: Text('Dark Mode'),
+              title: const Text('Dark Mode'),
               value: Tema.enableDarkMode,
-              secondary: Icon(Icons.nightlight_round),
+              secondary: const Icon(Icons.nightlight_round),
               onChanged: (value) {
                 Tema.ganti = value;
               },
             ),
           ),
           Container(
-            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
@@ -129,14 +129,14 @@ class _SettingState extends State<Setting> {
                   color: Colors.grey.withOpacity(0.1),
                   spreadRadius: 1,
                   blurRadius: 1,
-                  offset: Offset(0, 5),
+                  offset: const Offset(0, 5),
                 ),
               ],
             ),
             child: ListTile(
-              title: Text('Logout'),
-              leading: Icon(Icons.exit_to_app),
-              trailing: Icon(Icons.keyboard_arrow_right),
+              title: const Text('Logout'),
+              leading: const Icon(Icons.exit_to_app),
+              trailing: const Icon(Icons.keyboard_arrow_right),
               onTap: () {
                 _showLogoutConfirmationDialog();
               },

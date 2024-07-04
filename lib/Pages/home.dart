@@ -4,11 +4,11 @@ import 'package:infoin_ewallet/Pages/bayar.dart';
 import 'package:infoin_ewallet/Pages/promo.dart';
 import 'package:infoin_ewallet/Pages/transfer.dart';
 import 'package:infoin_ewallet/Pages/topup.dart';
-import 'package:infoin_ewallet/Provider/userProfile.dart';
+import 'package:infoin_ewallet/Provider/user_profile.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
-import 'package:infoin_ewallet/Widget/bottomNavigation.dart';
-import 'package:infoin_ewallet/Widget/homeMenuItem.dart';
-import 'package:infoin_ewallet/Widget/menuItemBTT.dart';
+import 'package:infoin_ewallet/Widget/bottom_navigation.dart';
+import 'package:infoin_ewallet/Widget/home_menu_item.dart';
+import 'package:infoin_ewallet/Widget/menu_item_btt.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
@@ -131,7 +131,7 @@ class _HomeState extends State<Home> {
                             const Text("Saldo", style: TextStyle(color: Colors.white, fontSize: 15)),
                             const SizedBox(height: 10),
                             Text(
-                              '${saldoFormat.format(wallet.balance ?? 0)}',
+                              saldoFormat.format(wallet.balance ?? 0),
                               style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 20
@@ -265,7 +265,7 @@ class _HomeState extends State<Home> {
                         ),
                         const Spacer(),
                         const CustomMenuItem(
-                          routeName: '/payment',
+                          routeName: '/home',
                           imagePath: 'assets/images/img_dashboard_2.svg',
                           text: 'Lainnya',
                           isSvg: true,

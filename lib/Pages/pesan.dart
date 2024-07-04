@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infoin_ewallet/Widget/bottomNavigation.dart';
+import 'package:infoin_ewallet/Widget/bottom_navigation.dart';
 
 class Message {
   final String senderName;
@@ -11,7 +11,7 @@ class Message {
 }
 
 class Pesan extends StatefulWidget {
-  const Pesan({Key? key}) : super(key: key);
+  const Pesan({super.key});
 
   @override
   State<Pesan> createState() => _PesanState();
@@ -68,7 +68,7 @@ class _PesanState extends State<Pesan> {
     return Scaffold(
       appBar: AppBar(
         elevation: 0,
-        title: Text('Pesan'),
+        title: const Text('Pesan'),
         centerTitle: true,
         leading: Container(),
       ),
@@ -76,13 +76,13 @@ class _PesanState extends State<Pesan> {
         itemCount: messages.length,
         itemBuilder: (context, index) {
           return Container(
-            margin: EdgeInsets.symmetric(horizontal: 1, vertical: 10),
+            margin: const EdgeInsets.symmetric(horizontal: 1, vertical: 10),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
                   color: Colors.grey.withOpacity(0.1),
-                  offset: Offset(0, 5), 
+                  offset: const Offset(0, 5), 
                   blurRadius: 1, 
                   spreadRadius: 1)
               ],
@@ -96,7 +96,7 @@ class _PesanState extends State<Pesan> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(messages[index].messageContent),
-                  Text(messages[index].date, style: TextStyle(fontSize: 12, color: Colors.grey),),
+                  Text(messages[index].date, style: const TextStyle(fontSize: 12, color: Colors.grey),),
                 ],
               ),
             ),

@@ -12,9 +12,10 @@ import 'package:infoin_ewallet/Pages/home.dart';
 import 'package:infoin_ewallet/Pages/pesan.dart';
 import 'package:infoin_ewallet/Pages/Profile/profile.dart';
 import 'package:infoin_ewallet/Pages/riwayat.dart';
-import 'package:infoin_ewallet/Provider/darkMode.dart';
+import 'package:infoin_ewallet/Provider/dark_mode.dart';
+import 'package:infoin_ewallet/Provider/kontak.dart';
 import 'package:infoin_ewallet/Provider/transaksi.dart';
-import 'package:infoin_ewallet/Provider/userProfile.dart';
+import 'package:infoin_ewallet/Provider/user_profile.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
 import 'package:provider/provider.dart';
 
@@ -25,6 +26,7 @@ void main() {
       ChangeNotifierProvider(create: (_) => WalletProvider()),
       ChangeNotifierProvider(create: (_) => TransaksiProvider()),
       ChangeNotifierProvider(create: (_) => DarkMode()),
+      ChangeNotifierProvider(create: (_) => KontakProvider()),
     ],
     child: const MainApp(),
   ));
@@ -70,6 +72,8 @@ class MainApp extends StatelessWidget {
 
     final newThemeData = tema.enableDarkMode ? tema.dark.copyWith(pageTransitionsTheme: pageTransitionsTheme)
                                               : tema.light.copyWith(pageTransitionsTheme: pageTransitionsTheme);
+
+   
     return MaterialApp(
       title: "Infoin_E-Wallet",
       theme: newThemeData,

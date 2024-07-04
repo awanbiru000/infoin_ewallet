@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:infoin_ewallet/Provider/transaksi.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
-import 'package:infoin_ewallet/Widget/customButton.dart';
+import 'package:infoin_ewallet/Widget/custom_button.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
-enum PaymentMethod { bankTransfer, creditCard, alfamart, indomaret }
-enum Bank { BRI, BCA, Mandiri, BNI, other }
+enum PaymentMethod { bankTransfer, alfamart, indomaret }
+enum Bank { BRI, BCA, Mandiri, BNI, PermataBank }
 
 class TopUp extends StatefulWidget {
-  const TopUp({Key? key}) : super(key: key);
+  const TopUp({super.key});
 
   @override
   State<TopUp> createState() => _TopUpState();
 }
 
 class _TopUpState extends State<TopUp> {
-  TextEditingController _nominalController = TextEditingController();
+  final TextEditingController _nominalController = TextEditingController();
   PaymentMethod _selectedPaymentMethod = PaymentMethod.bankTransfer;
   Bank _selectedBank = Bank.BRI;
   bool _isNominalValid = false;
@@ -37,24 +37,24 @@ class _TopUpState extends State<TopUp> {
 
     double nominal = double.tryParse(_nominalController.text) ?? 0.0;
     String receiverName = '';
+    String avatar = '';
 
 
     bool success = false;
     switch (_selectedPaymentMethod) {
       case PaymentMethod.bankTransfer:
         receiverName = _selectedBank.toString().split('.').last;
-        success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
-        break;
-      case PaymentMethod.creditCard:
-        receiverName = 'Kartu Kredit';
+        avatar = 'assets/images/logo-${receiverName.toLowerCase()}.png';
         success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;
       case PaymentMethod.alfamart:
         receiverName = 'Alfamart';
+        avatar = 'assets/images/logo-${receiverName.toLowerCase()}.png';
         success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;
       case PaymentMethod.indomaret:
         receiverName = 'Indomaret';
+        avatar = 'assets/images/logo-${receiverName.toLowerCase()}.png';
         success = Provider.of<WalletProvider>(context, listen: false).increaseBalance(nominal);
         break;
     }
@@ -64,7 +64,7 @@ class _TopUpState extends State<TopUp> {
     'category': 'Top Up',
     'amount': 'Rp ${NumberFormat('#,##0', 'id_ID').format(nominal)}',
     'date': DateFormat('dd MMM yyyy, HH:mm').format(DateTime.now()),
-    'avatar': 'assets/images/img_ellipse_17.png'
+    'avatar': avatar
   };
 
     if (success) {
@@ -105,7 +105,7 @@ class _TopUpState extends State<TopUp> {
               items: PaymentMethod.values.map((PaymentMethod method) {
                 return DropdownMenuItem<PaymentMethod>(
                   value: method,
-                  child: Text(method == PaymentMethod.bankTransfer ? 'Bank Transfer' : method == PaymentMethod.creditCard ? 'Kartu Kredit' : method == PaymentMethod.alfamart ? 'Alfamart' : method == PaymentMethod.indomaret ? 'Indomaret' : method.toString().split('.').last),
+                  child: Text(method == PaymentMethod.bankTransfer ? 'Bank Transfer' : method == PaymentMethod.alfamart ? 'Alfamart' : method == PaymentMethod.indomaret ? 'Indomaret' : method.toString().split('.').last),
                 );
               }).toList(),
             ),

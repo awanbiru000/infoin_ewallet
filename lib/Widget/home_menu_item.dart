@@ -7,7 +7,7 @@ class CustomMenuItem extends StatelessWidget {
   final String text;
   final bool isSvg;
 
-  const CustomMenuItem({
+  const CustomMenuItem({super.key, 
     required this.routeName,
     required this.imagePath,
     required this.text,
@@ -25,7 +25,7 @@ class CustomMenuItem extends StatelessWidget {
           child: Container(
             width: 50,
             height: 50,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               shape: BoxShape.circle,
               color: Colors.white,
             ),

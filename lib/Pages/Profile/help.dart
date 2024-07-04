@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Help extends StatelessWidget {
-  const Help({Key? key}) : super(key: key);
+  const Help({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -10,8 +10,8 @@ class Help extends StatelessWidget {
         title: const Text("Help"),
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
-        children: [
+        padding: const EdgeInsets.all(16.0),
+        children: const [
           HelpItem(
             title: "Cara Mengisi Saldo",
             description:

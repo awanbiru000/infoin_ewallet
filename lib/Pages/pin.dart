@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:infoin_ewallet/Provider/userProfile.dart';
+import 'package:infoin_ewallet/Provider/user_profile.dart';
 import 'package:provider/provider.dart';
 
 class PinDialog extends StatefulWidget {
   final VoidCallback onPinEntered;
 
-  const PinDialog({Key? key, required this.onPinEntered}) : super(key: key);
+  const PinDialog({super.key, required this.onPinEntered});
 
   @override
   _PinDialogState createState() => _PinDialogState();
@@ -24,7 +24,7 @@ class _PinDialogState extends State<PinDialog> {
   Widget build(BuildContext context) {
     var pinFromProvider = Provider.of<UserProfile>(context, listen: false).pin;
     return AlertDialog(
-      title: Text('Masukkan PIN'),
+      title: const Text('Masukkan PIN'),
       content: TextFormField(
         controller: _pinController,
         keyboardType: TextInputType.number,
@@ -36,23 +36,22 @@ class _PinDialogState extends State<PinDialog> {
           onPressed: () {
             Navigator.of(context).pop();
           },
-          child: Text('Batal'),
+          child: const Text('Batal'),
         ),
         TextButton(
           onPressed: () {
             String enteredPin = _pinController.text;
             if (enteredPin == pinFromProvider.toString()) {
               widget.onPinEntered();
-              Navigator.of(context).pop();
             } else {
               ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
+                const SnackBar(
                   content: Text('PIN salah. Silakan coba lagi.'),
                 ),
               );
             }
           },
-          child: Text('OK'),
+          child: const Text('OK'),
         ),
       ],
     );

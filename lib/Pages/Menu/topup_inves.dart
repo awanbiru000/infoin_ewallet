@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:infoin_ewallet/Pages/pin.dart';
-import 'package:infoin_ewallet/Pages/transaksiSukses.dart';
+import 'package:infoin_ewallet/Pages/transaksi_sukses.dart';
 import 'package:infoin_ewallet/Provider/transaksi.dart';
-import 'package:infoin_ewallet/Provider/userProfile.dart';
+import 'package:infoin_ewallet/Provider/user_profile.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
@@ -57,7 +56,7 @@ class _TopUpInvestasiState extends State<TopUpInvestasi> {
         'category': 'Investasi',
         'amount': 'Rp ${NumberFormat('#,##0', 'id_ID').format(nominal)}',
         'date': DateFormat('dd MMM yyyy, HH:mm').format(DateTime.now()),
-        'avatar': 'assets/images/img_ellipse_17.png'
+        'avatar': 'assets/images/logo-bibit.png'
       };
       Provider.of<TransaksiProvider>(context, listen: false)
           .addTransaction(newTransaction);
@@ -72,9 +71,6 @@ class _TopUpInvestasiState extends State<TopUpInvestasi> {
       } catch (e) {
         print('Error navigating to TransactionSuccessPage: $e');
       }
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Transaksi berhasil')),
-      );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Transaksi gagal. Silakan coba lagi.')),

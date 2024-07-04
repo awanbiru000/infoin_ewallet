@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infoin_ewallet/Widget/qrScannerOverlay.dart';
+import 'package:infoin_ewallet/Widget/qr_scanner_overlay.dart';
 import 'package:mobile_scanner/mobile_scanner.dart';
 
 class Bayar extends StatefulWidget {
@@ -69,7 +69,7 @@ class FoundScreen extends StatelessWidget {
   final String value;
   final VoidCallback screenClose;
 
-  const FoundScreen({required this.value, required this.screenClose, Key? key}) : super(key: key);
+  const FoundScreen({required this.value, required this.screenClose, super.key});
 
   @override
   Widget build(BuildContext context) {

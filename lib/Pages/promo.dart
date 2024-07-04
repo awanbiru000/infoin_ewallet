@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class Promosi extends StatefulWidget {
-  const Promosi({Key? key}) : super(key: key);
+  const Promosi({super.key});
 
   @override
   State<Promosi> createState() => _PromosiState();
@@ -12,7 +12,7 @@ class _PromosiState extends State<Promosi> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Promo"),
+        title: const Text("Promo"),
       ),
       body: ListView(
         children: [
@@ -60,25 +60,25 @@ class PromoCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      margin: EdgeInsets.all(8.0),
+      margin: const EdgeInsets.all(8.0),
       child: InkWell(
         onTap: onPressed,
         child: Padding(
-          padding: EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 18.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 8.0),
+              const SizedBox(height: 8.0),
               Text(
                 description,
-                style: TextStyle(fontSize: 16.0),
+                style: const TextStyle(fontSize: 16.0),
               ),
             ],
           ),

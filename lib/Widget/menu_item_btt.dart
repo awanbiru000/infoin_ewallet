@@ -7,11 +7,11 @@ class MenuItemBTT extends StatelessWidget {
   final VoidCallback onTap;
 
   const MenuItemBTT({
-    Key? key,
+    super.key,
     this.text,
     this.svgPath,
     required this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -1,8 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:infoin_ewallet/Pages/Menu/topupinves.dart';
-import 'package:infoin_ewallet/Provider/userProfile.dart';
+import 'package:infoin_ewallet/Pages/Menu/topup_inves.dart';
+import 'package:infoin_ewallet/Provider/user_profile.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 

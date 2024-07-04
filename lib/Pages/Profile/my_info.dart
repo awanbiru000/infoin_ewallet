@@ -1,10 +1,12 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:infoin_ewallet/Provider/userProfile.dart';
+import 'package:infoin_ewallet/Provider/user_profile.dart';
 import 'package:provider/provider.dart';
 
 class MyInfo extends StatefulWidget {
+  const MyInfo({super.key});
+
   @override
   State<MyInfo> createState() => _MyInfoState();
 }
@@ -28,7 +30,7 @@ class _MyInfoState extends State<MyInfo> {
     var userProfile = Provider.of<UserProfile>(context);
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Info'),
+        title: const Text('My Info'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(20.0),
@@ -47,43 +49,43 @@ class _MyInfoState extends State<MyInfo> {
                 radius: 50,
                 backgroundImage: userProfile.avatarImage != null
                     ? FileImage(userProfile.avatarImage!)
-                    : AssetImage('assets/images/img_ellipse_17.png')
+                    : const AssetImage('assets/images/img_ellipse_17.png')
                         as ImageProvider<Object>,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             TextFormField(
               initialValue: _name,
-              decoration: InputDecoration(labelText: 'Name'),
+              decoration: const InputDecoration(labelText: 'Name'),
               onChanged: (value) {
                 setState(() {
                   _name = value;
                 });
               },
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextFormField(
               initialValue: _email,
-              decoration: InputDecoration(labelText: 'Email'),
+              decoration: const InputDecoration(labelText: 'Email'),
               onChanged: (value) {
                 setState(() {
                   _email = value;
                 });
               },
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             TextFormField(
               keyboardType: TextInputType.number,
               initialValue: _phoneNumber.toString(),
-              decoration: InputDecoration(labelText: 'Phone Number'),
+              decoration: const InputDecoration(labelText: 'Phone Number'),
               onChanged: (value) {
                 setState(() {
                   _phoneNumber = int.tryParse(value) ?? 0;
                 });
               },
             ),
-            SizedBox(height: 10),
-            SizedBox(height: 20),
+            const SizedBox(height: 10),
+            const SizedBox(height: 20),
             SizedBox(
               width: double.infinity,
               child: ElevatedButton(
@@ -93,7 +95,7 @@ class _MyInfoState extends State<MyInfo> {
                   userProfile.phoneNumber = _phoneNumber;
                   userProfile.saveProfile();
                 },
-                child: Text('Save'),
+                child: const Text('Save'),
               ),
             ),
           ],

@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:infoin_ewallet/Pages/Profile/help.dart';
-import 'package:infoin_ewallet/Pages/Profile/myInfo.dart';
+import 'package:infoin_ewallet/Pages/Profile/my_info.dart';
 import 'package:infoin_ewallet/Pages/Profile/setting.dart';
 import 'package:infoin_ewallet/Pages/upgrade.dart';
-import 'package:infoin_ewallet/Provider/userProfile.dart';
-import 'package:infoin_ewallet/Widget/bottomNavigation.dart';
+import 'package:infoin_ewallet/Provider/user_profile.dart';
+import 'package:infoin_ewallet/Widget/bottom_navigation.dart';
 import 'package:provider/provider.dart';
 
 class Profile extends StatefulWidget {
-  const Profile({Key? key}) : super(key: key);
+  const Profile({super.key});
 
   @override
   State<Profile> createState() => _ProfileState();
@@ -45,17 +45,19 @@ class _ProfileState extends State<Profile> {
       body: Column(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
-          SizedBox(height: 100),
+          const SizedBox(height: 100),
           CircleAvatar(
             radius: 50,
-            backgroundImage: AssetImage('assets/images/img_ellipse_17.png'),
+            backgroundImage: userProfile.avatarImage != null
+                ? FileImage(userProfile.avatarImage!)
+                : const AssetImage('assets/images/img_ellipse_17.png') as ImageProvider,
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Text(
             '${userProfile.name}',
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.all(10.0),
             child: SizedBox(
@@ -64,16 +66,16 @@ class _ProfileState extends State<Profile> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Upgrade()),
+                    MaterialPageRoute(builder: (context) => const Upgrade()),
                   );
                 },
-                child: Text('Verifikasi Ke Premium'),
+                child: const Text('Verifikasi Ke Premium'),
               ),
             ),
           ),
           ListTile(
-            leading: Icon(Icons.account_circle_outlined),
-            title: Text('My Info'),
+            leading: const Icon(Icons.account_circle_outlined),
+            title: const Text('My Info'),
             onTap: () {
               Navigator.push(
                 context,
@@ -82,22 +84,22 @@ class _ProfileState extends State<Profile> {
             },
           ),
           ListTile(
-            leading: Icon(Icons.settings_outlined),
-            title: Text('Setting'),
+            leading: const Icon(Icons.settings_outlined),
+            title: const Text('Setting'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Setting()),
+                MaterialPageRoute(builder: (context) => const Setting()),
               );
             },
           ),
           ListTile(
-            leading: Icon(Icons.help_outline),
-            title: Text('Help'),
+            leading: const Icon(Icons.help_outline),
+            title: const Text('Help'),
             onTap: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => Help()),
+                MaterialPageRoute(builder: (context) => const Help()),
               );
             },
           ),

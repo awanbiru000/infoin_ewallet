@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:infoin_ewallet/Pages/versiKTP.dart';
+import 'package:infoin_ewallet/Pages/versi_ktp.dart';
 
 class Upgrade extends StatelessWidget {
   const Upgrade({super.key});

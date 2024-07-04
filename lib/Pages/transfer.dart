@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:infoin_ewallet/Pages/pin.dart';
-import 'package:infoin_ewallet/Pages/transaksiSukses.dart';
+import 'package:infoin_ewallet/Pages/transaksi_sukses.dart';
+import 'package:infoin_ewallet/Provider/kontak.dart';
 import 'package:infoin_ewallet/Provider/transaksi.dart';
 import 'package:infoin_ewallet/Provider/wallet.dart';
-import 'package:infoin_ewallet/Widget/customButton.dart';
+import 'package:infoin_ewallet/Widget/custom_button.dart';
 import 'package:provider/provider.dart';
 import 'package:intl/intl.dart';
 
@@ -16,20 +17,14 @@ class Transfer extends StatefulWidget {
 }
 
 class _TransferState extends State<Transfer> {
-  final List<Map<String, String>> penerimaTransfer = [
-    {'nama': 'Agus', 'nomorHP': '0812345678'},
-    {'nama': 'Rizki', 'nomorHP': '0812345679'},
-    {'nama': 'Farhan', 'nomorHP': '0812345680'},
-  ];
-
   String? _namaPenerima;
-  TextEditingController _nominalController = TextEditingController();
-  TextEditingController _nomorHPController = TextEditingController();
+  final TextEditingController _nominalController = TextEditingController();
+  final TextEditingController _nomorHPController = TextEditingController();
   bool _isNomorHPValid = false;
 
   void _cariPenerima() {
     String nomorHP = _nomorHPController.text;
-    var penerima = penerimaTransfer.firstWhere(
+    var penerima = Provider.of<KontakProvider>(context, listen: false).kontak.firstWhere(
       (penerima) => penerima['nomorHP'] == nomorHP,
       orElse: () => {'nama': '', 'nomorHP': ''},
     );
@@ -43,7 +38,6 @@ class _TransferState extends State<Transfer> {
     if (!_isNomorHPValid) {
       return;
     }
-
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -59,44 +53,43 @@ class _TransferState extends State<Transfer> {
   
   void _prosesTransfer() {
     double nominal = double.tryParse(_nominalController.text) ?? 0.0;
-    
-      if (nominal <= 0 || Provider.of<WalletProvider>(context, listen: false).balance! < nominal) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Nominal tidak valid atau saldo tidak cukup')),
-        );
-        return;
-      }
 
-      bool success = Provider.of<WalletProvider>(context, listen: false).decreaseBalance(nominal);
+    if (nominal <= 0 || Provider.of<WalletProvider>(context, listen: false).balance! < nominal) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Nominal tidak valid atau saldo tidak cukup')),
+      );
+      return;
+    }
 
-      if (success) {
-        Map<String, dynamic> newTransaction = {
-          'name': _namaPenerima!,
-          'type': 'Pengeluaran',
-          'category': 'Transfer',
-          'amount': 'Rp ${NumberFormat('#,##0', 'id_ID').format(nominal)}',
-          'date': DateFormat('dd MMM yyyy, HH:mm').format(DateTime.now()),
-          'avatar': 'assets/images/img_ellipse_17.png'
-        };
-        Provider.of<TransaksiProvider>(context, listen: false).addTransaction(newTransaction);
-        try {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => TransactionSuccessPage(transactionData: newTransaction),
-            ),
-          );
-        } catch (e) {
+    bool success = Provider.of<WalletProvider>(context, listen: false).decreaseBalance(nominal);
+
+    if (success) {
+      Map<String, dynamic> newTransaction = {
+        'name': _namaPenerima!,
+        'type': 'Pengeluaran',
+        'category': 'Transfer',
+        'amount': 'Rp ${NumberFormat('#,##0', 'id_ID').format(nominal)}',
+        'date': DateFormat('dd MMM yyyy, HH:mm').format(DateTime.now()),
+        'avatar': 'assets/images/img_ellipse_17.png'
+      };
+      Provider.of<TransaksiProvider>(context, listen: false).addTransaction(newTransaction);
+      try {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => TransactionSuccessPage(transactionData: newTransaction),
+          ),
+        ).catchError((e) {
           print('Error navigating to TransactionSuccessPage: $e');
-        }
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Transfer berhasil')),
-        );
-      } else {
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Transfer gagal. Silakan coba lagi.')),
-        );
+        });
+      } catch (e) {
+        print('Error navigating to TransactionSuccessPage: $e');
       }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Transfer gagal. Silakan coba lagi.')),
+      );
+    }
   }
 
   @override
@@ -149,7 +142,7 @@ class _TransferState extends State<Transfer> {
             ),
             Text(
               'Saldo : ${saldoFormat.format(wallet.balance ?? 0)}',
-              style: TextStyle(
+              style: const TextStyle(
                 fontSize: 16
               )
             ),

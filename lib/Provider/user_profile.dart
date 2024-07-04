@@ -47,7 +47,6 @@ class UserProfile extends ChangeNotifier {
     print('Name: $name');
     print('Email: $email');
     print('Phone Number: $phoneNumber');
-    print('Password: $password');
     if (avatarImage != null) {
       print('Avatar Path: ${avatarImage!.path}');
     }
