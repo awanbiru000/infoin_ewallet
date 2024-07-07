@@ -16,6 +16,7 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   int _selectedIndex = 3;
+
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
@@ -50,7 +51,8 @@ class _ProfileState extends State<Profile> {
             radius: 50,
             backgroundImage: userProfile.avatarImage != null
                 ? FileImage(userProfile.avatarImage!)
-                : const AssetImage('assets/images/img_ellipse_17.png') as ImageProvider,
+                : const AssetImage('assets/images/img_ellipse_17.png')
+                    as ImageProvider,
           ),
           const SizedBox(height: 20),
           Text(
@@ -108,6 +110,24 @@ class _ProfileState extends State<Profile> {
       bottomNavigationBar: CustomBottomNavigationBar(
         selectedIndex: _selectedIndex,
         onItemTapped: _onItemTapped,
+      ),
+    );
+  }
+}
+
+class HalamanProfil extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Profil"),
+        centerTitle: true,
+      ),
+      body: Center(
+        child: Text(
+          "Halaman Profil",
+          style: TextStyle(fontSize: 24),
+        ),
       ),
     );
   }
