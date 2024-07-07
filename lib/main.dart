@@ -36,7 +36,8 @@ class CustomPageTransitionsBuilder extends PageTransitionsBuilder {
   final Duration transitionDuration;
   final Curve curves;
 
-  CustomPageTransitionsBuilder({required this.transitionDuration, required this.curves});
+  CustomPageTransitionsBuilder(
+      {required this.transitionDuration, required this.curves});
 
   @override
   Widget buildTransitions<T>(
@@ -70,10 +71,10 @@ class MainApp extends StatelessWidget {
       TargetPlatform.android: customPageTransitionsBuilder,
     });
 
-    final newThemeData = tema.enableDarkMode ? tema.dark.copyWith(pageTransitionsTheme: pageTransitionsTheme)
-                                              : tema.light.copyWith(pageTransitionsTheme: pageTransitionsTheme);
+    final newThemeData = tema.enableDarkMode
+        ? tema.dark.copyWith(pageTransitionsTheme: pageTransitionsTheme)
+        : tema.light.copyWith(pageTransitionsTheme: pageTransitionsTheme);
 
-   
     return MaterialApp(
       title: "Infoin_E-Wallet",
       theme: newThemeData,

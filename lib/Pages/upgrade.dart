@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:infoin_ewallet/Pages/upgrade_bayar.dart';
 
 class Upgrade extends StatefulWidget {
-  const Upgrade({Key? key}) : super(key: key);
+  const Upgrade({super.key});
 
   @override
   _UpgradeState createState() => _UpgradeState();
